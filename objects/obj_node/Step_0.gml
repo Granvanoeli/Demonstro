@@ -33,3 +33,6 @@ else {
    }
 }
 
+
+info.x =  bbox_right+10;
+info.y = bbox_top-10;

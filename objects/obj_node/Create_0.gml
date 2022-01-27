@@ -9,3 +9,7 @@ xx = -1;
 yy = -1;
 
 dragging = false;
+text="moppa";
+
+info = instance_create_layer( bbox_right+10, bbox_top-10, "Info", obj_info);
+info.text = text;

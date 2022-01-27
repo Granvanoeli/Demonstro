@@ -16,7 +16,7 @@
 //}
 draw_self();
 
-//draw_sprite(spr_info, 0, x, y);
-draw_set_colour(c_black);
-draw_text(x - 32, y - 48, x);
-draw_text(x - 32, y - 48, x);
+//draw_sprite(spr_info, 0, bbox_right+10, bbox_top-10);
+//draw_set_colour(c_black);
+//draw_text(x - 32, y - 48, x);
+//draw_text(x - 32, y - 48, x);
