@@ -14,6 +14,7 @@
 //	draw_set_colour(c_black);
 //	draw_text(x - 16, y - 48, "Tooltip Text");
 //}
+draw_self();
 
 //draw_sprite(spr_info, 0, x, y);
 draw_set_colour(c_black);
