@@ -1,10 +1,14 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_data_exchange",
   "spriteId": {
     "name": "spr_data_exchange",
     "path": "sprites/spr_data_exchange/spr_data_exchange.yy",
   },
   "solid": false,
   "visible": true,
+  "managed": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
@@ -30,8 +34,4 @@
     "name": "Objects",
     "path": "folders/Objects.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_data_exchange",
-  "tags": [],
-  "resourceType": "GMObject",
 }

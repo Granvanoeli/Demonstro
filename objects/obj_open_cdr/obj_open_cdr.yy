@@ -1,10 +1,14 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_open_cdr",
   "spriteId": {
     "name": "spr_open_cdr",
     "path": "sprites/spr_open_cdr/spr_open_cdr.yy",
   },
   "solid": false,
   "visible": true,
+  "managed": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
@@ -30,8 +34,4 @@
     "name": "Objects",
     "path": "folders/Objects.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_open_cdr",
-  "tags": [],
-  "resourceType": "GMObject",
 }

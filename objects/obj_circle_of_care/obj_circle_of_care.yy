@@ -1,10 +1,14 @@
 {
+  "resourceType": "GMObject",
+  "resourceVersion": "1.0",
+  "name": "obj_circle_of_care",
   "spriteId": {
     "name": "spr_circle_of_care",
     "path": "sprites/spr_circle_of_care/spr_circle_of_care.yy",
   },
   "solid": false,
   "visible": true,
+  "managed": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
@@ -30,8 +34,4 @@
     "name": "Objects",
     "path": "folders/Objects.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "obj_circle_of_care",
-  "tags": [],
-  "resourceType": "GMObject",
 }

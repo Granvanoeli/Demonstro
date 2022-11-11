@@ -11,5 +11,8 @@ yy = -1;
 dragging = false;
 text="moppa";
 
+// Add the info popup marker on the top right
 info = instance_create_layer( bbox_right+10, bbox_top-10, "Info", obj_info);
+
+// Set the text inside the popup
 info.text = text;
