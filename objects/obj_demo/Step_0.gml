@@ -9,3 +9,5 @@ if(keyboard_check_pressed(ord("T"))){
 	testVar(id);
 }
 
+//add to Joan
+//obj_joan.nodes.gp 
