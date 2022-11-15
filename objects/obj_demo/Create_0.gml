@@ -32,6 +32,8 @@ nodes = [
 
 ]
 
+global.createdNodes = [];
+
 if(draw_things){
 	
 	// Create people
@@ -50,16 +52,19 @@ if(draw_things){
 	// Create all the nodes in the array of nodes
 	for(var i=0; i<array_length(nodes); i++)
 	{
-		instance_create_layer(
+		// Create each node in a random location
+		var node = instance_create_layer(
 			irandom(room_width), 
 			irandom(room_height), 
 			"Instances", 
 			obj_node, 
-			{ tokens: nodes[i].group, name: nodes[i].name, sprite_index: nodes[i].sprite  });	
+			{ tokens: nodes[i].group, name: nodes[i].name, sprite_index: nodes[i].sprite });
+		
+		array_push(global.createdNodes, node);
 	}
 
 	
-	// Create nodes
+	// Create nodes non-programmatically
 	instance_create_layer(702, 387, "Instances", obj_open_cdr,{ tokens: [GROUPS.frail]});
 	instance_create_layer(194, 271, "Instances", obj_data_exchange, { tokens: [GROUPS.carer]});	
 }
