@@ -11,25 +11,41 @@ enum GROUPS {
 // List of nodes for Frail
 
 nodes = [
-{
-	name: "Suggested activity 1",
-	group: GROUPS.frail,
-	text: "This is some text",
-	sprite: spr_draggable
-},
-{
-	name: "Suggested activity 2",
-	group: GROUPS.frail,
-	text: "This is some text",
-	sprite: spr_draggable
-},
-{
-	name: "VOCAL",
-	group: GROUPS.carer,
-	text: "This is some text",
-	sprite: spr_area1
-}
+	{
+		name: "Suggested activity 1",
+		group: GROUPS.frail,
+		text: "This is some text",
+		sprite: spr_draggable
+	},
+	{
+		name: "Suggested activity 2",
+		group: GROUPS.frail,
+		text: "This is some text",
+		sprite: spr_draggable
+	},
+	{
+		name: "VOCAL",
+		group: GROUPS.carer,
+		text: "This is some text",
+		sprite: spr_area1
+	}
+];
 
+people = [
+{
+	name: "Joan",
+	tokens: [GROUPS.frail],
+	text: "This is some text",
+	sprite: spr_joan,
+	isSelected: false,
+},
+{
+	name: "Frances",
+	group: [GROUPS.carer],
+	text: "This is some text",
+	sprite: spr_frances,
+	isSelected: true,
+}
 ]
 
 global.createdNodes = [];
@@ -40,13 +56,18 @@ if(draw_things){
 	instance_create_layer(702, 387, "Instances", obj_person,{ 
 		tokens: [GROUPS.frail], 
 		sprite_index: spr_joan, 
-		name: "Joan"
+		name: "Joan",
+		isSelected: true,
 		});
 	instance_create_layer(200, 387, "Instances", obj_person,{ 
 		tokens: [GROUPS.carer], 
 		sprite_index: spr_frances, 
-		name: "Frances"
+		name: "Frances",
+		isSelected: false,
 		});
+	
+	
+	
 	
 	
 	// Create all the nodes in the array of nodes
