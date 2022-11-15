@@ -58,7 +58,10 @@ if(draw_things){
 			irandom(room_height), 
 			"Instances", 
 			obj_node, 
-			{ tokens: nodes[i].group, name: nodes[i].name, sprite_index: nodes[i].sprite });
+			{	tokens: nodes[i].group, 
+				name: nodes[i].name, 
+				sprite_index: nodes[i].sprite 
+			});
 				
 		// Store created nodes into array
 		array_push(global.createdNodes, node);
