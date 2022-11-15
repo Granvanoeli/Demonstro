@@ -39,12 +39,12 @@ if(draw_things){
 	// Create people
 	instance_create_layer(702, 387, "Instances", obj_person,{ 
 		tokens: [GROUPS.frail], 
-		sprite: spr_joan, 
+		sprite_index: spr_joan, 
 		name: "Joan"
 		});
 	instance_create_layer(200, 387, "Instances", obj_person,{ 
 		tokens: [GROUPS.carer], 
-		sprite: spr_frances, 
+		sprite_index: spr_frances, 
 		name: "Frances"
 		});
 	
@@ -59,12 +59,13 @@ if(draw_things){
 			"Instances", 
 			obj_node, 
 			{ tokens: nodes[i].group, name: nodes[i].name, sprite_index: nodes[i].sprite });
-		
+				
+		// Store created nodes into array
 		array_push(global.createdNodes, node);
 	}
 
 	
 	// Create nodes non-programmatically
-	instance_create_layer(702, 387, "Instances", obj_open_cdr,{ tokens: [GROUPS.frail]});
-	instance_create_layer(194, 271, "Instances", obj_data_exchange, { tokens: [GROUPS.carer]});	
+	//instance_create_layer(702, 387, "Instances", obj_open_cdr,{ tokens: [GROUPS.frail]});
+	//instance_create_layer(194, 271, "Instances", obj_data_exchange, { tokens: [GROUPS.carer]});	
 }

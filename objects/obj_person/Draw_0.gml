@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-
+draw_self();
 for(var i=0; i<array_length(global.createdNodes); i++){
 	
 	var node = global.createdNodes[i];
@@ -11,4 +11,7 @@ for(var i=0; i<array_length(global.createdNodes); i++){
 		}
 	}
 }
+
+
+
 
