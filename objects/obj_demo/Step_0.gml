@@ -6,7 +6,8 @@ if(keyboard_check(ord("R"))){
 }
 
 if(keyboard_check_pressed(ord("T"))){
-	testVar(id);
+	show_debug_message(global.createdNodes);
+	show_debug_message(global.createdPeople);
 }
 
 //add to Joan

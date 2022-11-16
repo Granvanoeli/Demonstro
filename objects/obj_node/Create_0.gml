@@ -7,8 +7,7 @@ text="moppa"; //To be expanded
 
 
 image_index = 0;
-image_xscale = 0.08;
-image_yscale = 0.08;
+
 
 xx = -1;
 yy = -1;
