@@ -8,6 +8,8 @@ if(keyboard_check(ord("R"))){
 if(keyboard_check_pressed(ord("T"))){
 	show_debug_message(global.createdNodes);
 	show_debug_message(global.createdPeople);
+	show_debug_message(global.mainPerson.name);
+
 }
 
 //add to Joan

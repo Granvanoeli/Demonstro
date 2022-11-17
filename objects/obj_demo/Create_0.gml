@@ -1,8 +1,10 @@
 /// @description Insert description here
 // You can write your code in this editor
-draw_things = true;
+draw_things = false;
 
-//
+draw_test_things = true;
+
+#region Setup
 enum GROUPS {
 	frail,
 	carer
@@ -37,20 +39,24 @@ people = [
 		tokens: [GROUPS.frail],
 		text: "This is some text",
 		sprite: spr_joan,
-		isSelected: false,
+		isMainPerson: true,
 	},
 	{
 		name: "Frances",
 		tokens: [GROUPS.carer],
 		text: "This is some text",
 		sprite: spr_frances,
-		isSelected: true,
+		isMainPerson: false,
 	}
 ]
 
 global.createdNodes = [];
 global.createdPeople = [];
+global.mainPerson = -1;
 
+#endregion
+
+#region Create all objects
 if(draw_things){
 	
 	
@@ -60,8 +66,8 @@ if(draw_things){
 	{
 		
 		// Put person in random spot if not active
-		var personX = (people[i].isSelected ? (room_width/2): (irandom(room_width)));
-		var personY = (people[i].isSelected ? (room_height/2): (irandom(room_height)));
+		var personX = (people[i].isMainPerson ? (room_width/2): (irandom(room_width)));
+		var personY = (people[i].isMainPerson ? (room_height/2): (irandom(room_height)));
 		
 		var person = instance_create_layer(
 			personX, 
@@ -73,9 +79,13 @@ if(draw_things){
 				tokens: people[i].tokens,
 				text: people[i].text,
 				sprite_index: people[i].sprite,
-				isSelected: people[i].isSelected
+				isMainPerson: people[i].isMainPerson
 			}
 		);
+		if (person.isMainPerson){
+			global.mainPerson = person;
+		}
+		
 				
 		// Store created nodes into array
 		array_push(global.createdPeople, person);
@@ -86,6 +96,9 @@ if(draw_things){
 	/// Create all the nodes in the array of nodes
 	for(var i=0; i<array_length(nodes); i++)
 	{
+		
+		
+		
 		// Create each node in a random location
 		var node = instance_create_layer(
 			irandom(room_width), 
@@ -97,7 +110,10 @@ if(draw_things){
 				sprite_index: nodes[i].sprite 
 			}
 		);
-				
+		
+		//trying orbit functionout
+		show_debug_message(check_orbit(node.tokens));
+		
 		// Store created nodes into array
 		array_push(global.createdNodes, node);
 	}
@@ -107,3 +123,16 @@ if(draw_things){
 	//instance_create_layer(702, 387, "Instances", obj_open_cdr,{ tokens: [GROUPS.frail]});
 	//instance_create_layer(194, 271, "Instances", obj_data_exchange, { tokens: [GROUPS.carer]});	
 }
+	
+#endregion
+
+#region Create test objects
+	var central = instance_create_layer(room_width/2,room_height/2, "Instances", obj_area1);
+	var _xx = central.x + lengthdir_x(164, 0);
+	var _yy = central.y + lengthdir_y(164, 0);
+	instance_create_layer(_xx, _yy, "Instances", obj_area2);
+	
+	var _xx2 = central.x + lengthdir_x(164, 90);
+	var _yy2 = central.y + lengthdir_y(164, 90);
+	instance_create_layer(_xx2, _yy2, "Instances", obj_area2);
+#endregion
