@@ -127,6 +127,7 @@ if(draw_things){
 #endregion
 
 #region Create test objects
+if(draw_test_things){
 	var central = instance_create_layer(room_width/2,room_height/2, "Instances", obj_area1);
 	var _xx = central.x + lengthdir_x(164, 0);
 	var _yy = central.y + lengthdir_y(164, 0);
@@ -135,4 +136,5 @@ if(draw_things){
 	var _xx2 = central.x + lengthdir_x(164, 90);
 	var _yy2 = central.y + lengthdir_y(164, 90);
 	instance_create_layer(_xx2, _yy2, "Instances", obj_area2);
+}
 #endregion
