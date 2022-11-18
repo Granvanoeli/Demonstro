@@ -19,6 +19,7 @@ function searchArray (array, val_to_search){
 	}
 }
 
+
 function define_orbits(nodes){
 	
 	for(var m=0; m<array_length(nodes); m++){
@@ -37,20 +38,19 @@ function define_orbits(nodes){
 					// If they correspond
 					if (person.tokens[k] == token){
 						array_push(person.associatedNodes, nodes[m]);
-						//var personLocation = [person.x,person.y];
-					
-						//return personLocation;
 					}
-				}
-			
+				}			
 			}
 		}
-}
-	
+	}
 }
 
-function place_in_orbit(node){
+function count_nodes_of_each_type(nodes){
+	var types = [];
 	
+	for(var i=0; i<array_length(nodes); i++){
+		
+	}
 
 }
 

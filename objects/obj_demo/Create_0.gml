@@ -27,21 +27,9 @@ nodes = [
 	},
 	{
 		name: "Suggested activity 2",
-		groups: [GROUPS.frail],
+		groups: [GROUPS.frail, GROUPS.carer],
 		text: "This is some text",
-		sprite: spr_draggable
-	},
-	{
-		name: "Suggested activity 2",
-		groups: [GROUPS.frail],
-		text: "This is some text",
-		sprite: spr_draggable
-	},
-	{
-		name: "Suggested activity 2",
-		groups: [GROUPS.frail],
-		text: "This is some text",
-		sprite: spr_draggable
+		sprite: spr_PROMs
 	},
 	{
 		name: "VOCAL",
@@ -100,8 +88,8 @@ if(draw_things){
 		
 		// Dispose poeple in the right orbit. The "supporting peple" 
 		// should be displayed in orbit of the main person.
-		var personX = (people[i].isMainPerson ? (room_width/2): (room_width/2 + lengthdir_x(150, (360/array_length(people))*normalPeopleCreated )));
-		var personY = (people[i].isMainPerson ? (room_height/2): (room_height/2 + lengthdir_y(150, (360/array_length(people))*normalPeopleCreated )));
+		var personX = (currentPerson.isMainPerson ? (room_width/2): (room_width/2 + lengthdir_x(100, (360/array_length(people))*normalPeopleCreated )));
+		var personY = (currentPerson.isMainPerson ? (room_height/2): (room_height/2 + lengthdir_y(100, (360/array_length(people))*normalPeopleCreated )));
 		
 		var person = instance_create_layer(
 			personX, 
@@ -109,12 +97,14 @@ if(draw_things){
 			"Instances", 
 			obj_person, 
 			{	
-				name: people[i].name, 
-				tokens: people[i].tokens,
-				text: people[i].text,
-				sprite_index: people[i].sprite,
-				isMainPerson: people[i].isMainPerson,
-				associatedNodes: people[i].associatedNodes
+				name: currentPerson.name, 
+				tokens: currentPerson.tokens,
+				text: currentPerson.text,
+				sprite_index: currentPerson.sprite,
+				isMainPerson: currentPerson.isMainPerson,
+				associatedNodes: currentPerson.associatedNodes,
+				image_xscale: (currentPerson.isMainPerson ? 1 : 0.7),
+				image_yscale: (currentPerson.isMainPerson ? 1 : 0.7)
 			}
 		);
 
@@ -125,42 +115,37 @@ if(draw_things){
 	
 	
 	// NODES ASSIGNMENT
-	/// Assign each node to the appropriate people.
-	//for(var i=0; i<array_length(nodes); i++)
-	//{
+	/// Assign each node to the appropriate people.		
+	define_orbits(nodes);
 		
-define_orbits(nodes);
+	// Position the nodes around the people
+	for(var j=0; j<array_length(global.createdPeople); j++){
+			
+		var currentPerson = global.createdPeople[j];
+		for(var i=0; i<array_length(currentPerson.associatedNodes); i++){
+			
+			var currentNodes = currentPerson.associatedNodes;
+			
+			var px = currentPerson.x;
+			var py = currentPerson.y;
+			
+			
+			// Create each node in a random location
+			var node = instance_create_layer(
+				px + lengthdir_x(164, currentPerson.isMainPerson ? 30*(i+1) + 90 : 30*(i+1) + 270), 
+				py + lengthdir_y(164, currentPerson.isMainPerson ? 30*(i+1) + 90 : 30*(i+1) + 270), 
+				"Instances", 
+				obj_node, 
+				{	tokens: currentNodes[i].groups, 
+					name: currentNodes[i].name, 
+					sprite_index: currentNodes[i].sprite 
+				}
+			);
 		
-for(var j=0; j<array_length(global.createdPeople); j++){
-			
-	var currentPerson = global.createdPeople[j];
-	for(var i=0; i<array_length(currentPerson.associatedNodes); i++){
-			
-		var nodes = currentPerson.associatedNodes;
-			
-		var px = currentPerson.x;
-		var py = currentPerson.y;
-		// Create each node in a random location
-		var node = instance_create_layer(
-			px + lengthdir_x(164, 360/array_length(currentPerson.associatedNodes)*i), 
-			py + lengthdir_y(164, 360/array_length(currentPerson.associatedNodes)*i), 
-			"Instances", 
-			obj_node, 
-			{	tokens: nodes[i].groups, 
-				name: nodes[i].name, 
-				sprite_index: nodes[i].sprite 
-			}
-		);
-		
-		//Store created nodes into array
-		array_push(global.createdNodes, node);
+			//Store created nodes into array
+			array_push(global.createdNodes, node);
+		}
 	}
-}
-
-	
-	// Create nodes non-programmatically
-	//instance_create_layer(702, 387, "Instances", obj_open_cdr,{ tokens: [GROUPS.frail]});
-	//instance_create_layer(194, 271, "Instances", obj_data_exchange, { tokens: [GROUPS.carer]});	
 }
 	
 #endregion
@@ -173,8 +158,8 @@ if(draw_test_things){
 	var _yy = central.y + lengthdir_y(164, 0);
 	instance_create_layer(_xx, _yy, "Instances", obj_draggable);
 	
-	var _xx2 = central.x + lengthdir_x(164, 90);
-	var _yy2 = central.y + lengthdir_y(164, 90);
+	var _xx2 = central.x + lengthdir_x(164, 450);
+	var _yy2 = central.y + lengthdir_y(164, 450);
 	instance_create_layer(_xx2, _yy2, "Instances", obj_area2);
 }
 #endregion
