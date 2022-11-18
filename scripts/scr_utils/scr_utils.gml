@@ -11,48 +11,41 @@ function print(message){
 /// @param {array}			the array to look through
 /// @param {val_to_search}	the value to find in the array
 function searchArray (array, val_to_search){
-	for(var i=0; i<array_length(array); i++){
+	var found = false;
+	for(var i=0; i<array_length(array); i++){		
 		if (array[i] == val_to_search){
-			return true;
+			found = true;
 		}
-		else return false;
 	}
+	return found;
 }
 
 
 function define_orbits(nodes){
 	
-	for(var m=0; m<array_length(nodes); m++){
+	// For every node NODE 1
+	for(var i=0; i<array_length(nodes); i++){
+		var node = nodes[i];
 		
-		var tokensArray = nodes[m].groups;
-		// For each token the node has 
-		for(var i=0; i<array_length(tokensArray); i++){
-			//Check each of the people
-			var token = tokensArray[i];
-			for(var j=0; j<array_length(global.createdPeople); j++){
+		// For every token in that node TOKEN 1 of NODE 1
+		for(var j=0; j<array_length(node.groups); j++){
+			var tokenInGroup = node.groups[j];
 			
-				var person = global.createdPeople[j];
-				// Check each of the people's tokens
-				for(var k=0; k<array_length(person.tokens); k++){
-				
-					// If they correspond
-					if (person.tokens[k] == token){
-						array_push(person.associatedNodes, nodes[m]);
-					}
-				}			
+			// For every person PERSON 1
+			for(var k=0; k<array_length(global.createdPeople); k++){
+				var person = global.createdPeople[k];
+								
+				if(searchArray(person.tokens, tokenInGroup)){		
+						
+					array_push(person.associatedNodes, node);
+				}
+
 			}
 		}
 	}
-}
-
-function count_nodes_of_each_type(nodes){
-	var types = [];
-	
-	for(var i=0; i<array_length(nodes); i++){
 		
-	}
-
 }
+
 
 function dispose_in_a_circle (xx, yy){
 	theta = 0;

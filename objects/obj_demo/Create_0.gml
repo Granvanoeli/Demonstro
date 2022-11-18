@@ -26,7 +26,7 @@ nodes = [
 		sprite: spr_draggable
 	},
 	{
-		name: "Suggested activity 2",
+		name: "Suggested activity 3",
 		groups: [GROUPS.frail, GROUPS.carer],
 		text: "This is some text",
 		sprite: spr_PROMs
@@ -83,9 +83,6 @@ if(draw_things){
 			normalPeopleCreated++;
 		}
 		
-		
-		print(360/array_length(people)*normalPeopleCreated);
-		
 		// Dispose poeple in the right orbit. The "supporting peple" 
 		// should be displayed in orbit of the main person.
 		var personX = (currentPerson.isMainPerson ? (room_width/2): (room_width/2 + lengthdir_x(100, (360/array_length(people))*normalPeopleCreated )));
@@ -121,29 +118,30 @@ if(draw_things){
 	// Position the nodes around the people
 	for(var j=0; j<array_length(global.createdPeople); j++){
 			
-		var currentPerson = global.createdPeople[j];
-		for(var i=0; i<array_length(currentPerson.associatedNodes); i++){
+		var person = global.createdPeople[j];
+		for(var i=0; i<array_length(person.associatedNodes); i++){
 			
-			var currentNodes = currentPerson.associatedNodes;
+			var currentNode = person.associatedNodes[i];
 			
-			var px = currentPerson.x;
-			var py = currentPerson.y;
+			var px = person.x;
+			var py = person.y;
 			
 			
 			// Create each node in a random location
-			var node = instance_create_layer(
-				px + lengthdir_x(164, currentPerson.isMainPerson ? 30*(i+1) + 90 : 30*(i+1) + 270), 
-				py + lengthdir_y(164, currentPerson.isMainPerson ? 30*(i+1) + 90 : 30*(i+1) + 270), 
+			var instancedNode = instance_create_layer(
+				px + lengthdir_x(164, person.isMainPerson ? 30*(i+1) + 90 : 30*(i+1) + 270), 
+				py + lengthdir_y(164, person.isMainPerson ? 30*(i+1) + 90 : 30*(i+1) + 270), 
 				"Instances", 
 				obj_node, 
-				{	tokens: currentNodes[i].groups, 
-					name: currentNodes[i].name, 
-					sprite_index: currentNodes[i].sprite 
+				{	tokens: currentNode.groups, 
+					name: currentNode.name, 
+					sprite_index: currentNode.sprite 
 				}
 			);
-		
+			
+			array_set(person.associatedNodes, i , instancedNode);
 			//Store created nodes into array
-			array_push(global.createdNodes, node);
+			array_push(global.createdNodes, instancedNode);
 		}
 	}
 }
