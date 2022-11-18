@@ -5,6 +5,7 @@
   "resources": [
     {"id":{"name":"obj_person","path":"objects/obj_person/obj_person.yy",},"order":3,},
     {"id":{"name":"spr_phr","path":"sprites/spr_phr/spr_phr.yy",},"order":0,},
+    {"id":{"name":"spr_nine","path":"sprites/spr_nine/spr_nine.yy",},"order":17,},
     {"id":{"name":"spr_data_exchange","path":"sprites/spr_data_exchange/spr_data_exchange.yy",},"order":2,},
     {"id":{"name":"obj_info","path":"objects/obj_info/obj_info.yy",},"order":4,},
     {"id":{"name":"spr_open_cdr","path":"sprites/spr_open_cdr/spr_open_cdr.yy",},"order":1,},

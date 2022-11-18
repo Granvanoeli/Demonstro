@@ -19,29 +19,34 @@ function searchArray (array, val_to_search){
 	}
 }
 
-function check_orbit(tokensArray){
+function check_orbit(tokensArray, node){
 	
-	// for each token in the tokensArray of this node
+	// For each token the node has of this node
 	for(var i=0; i<array_length(tokensArray); i++){
-		//Check if any of the people has a corresponding one
+		//Check each of the people
 		var token = tokensArray[i];
 		for(var j=0; j<array_length(global.createdPeople); j++){
 			
 			var person = global.createdPeople[j];
+			// Check each of the people's tokens
 			for(var k=0; k<array_length(person.tokens); k++){
+				
+				// If they correspond
 				if (person.tokens[k] == token){
-					var personlocation = [person.x,person.y];
-					return personlocation;
+					array_push(person.associatedNodes, node);
+					var personLocation = [person.x,person.y];
+					
+					return personLocation;
 				}
 			}
 			
 		}
 	}
 	
-	// check the tokens array
-	// for each element found check its position 
-	// draw the instance in orbit of that position 
-	
+}
+
+function place_in_main_person_orbit(){
+
 }
 
 function dispose_in_a_circle (xx, yy){
