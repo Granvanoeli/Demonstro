@@ -26,6 +26,24 @@ nodes = [
 		sprite: spr_draggable
 	},
 	{
+		name: "Suggested activity 2",
+		groups: [GROUPS.frail],
+		text: "This is some text",
+		sprite: spr_draggable
+	},
+	{
+		name: "Suggested activity 2",
+		groups: [GROUPS.frail],
+		text: "This is some text",
+		sprite: spr_draggable
+	},
+	{
+		name: "Suggested activity 2",
+		groups: [GROUPS.frail],
+		text: "This is some text",
+		sprite: spr_draggable
+	},
+	{
 		name: "VOCAL",
 		groups:[GROUPS.carer],
 		text: "This is some text",
@@ -63,18 +81,25 @@ global.mainPerson = -1;
 if(draw_things){
 	
 	
-	// PEOPLE
+	// PEOPLE CREATION
 	/// Create all the people in the array of people
-	
-	var normalPeopleCreated = 1;
+	var normalPeopleCreated = -1;
 	for(var i=0; i<array_length(people); i++)
 	{
 		var currentPerson = people[i];
-		if(!currentPerson.isMainPerson){
-		 normalPeopleCreated ++;
+		
+		if(currentPerson.isMainPerson){
+			global.mainPerson = currentPerson;
+		}		
+		else {
+			normalPeopleCreated++;
 		}
+		
+		
 		print(360/array_length(people)*normalPeopleCreated);
-		// Put person in random spot if not active
+		
+		// Dispose poeple in the right orbit. The "supporting peple" 
+		// should be displayed in orbit of the main person.
 		var personX = (people[i].isMainPerson ? (room_width/2): (room_width/2 + lengthdir_x(150, (360/array_length(people))*normalPeopleCreated )));
 		var personY = (people[i].isMainPerson ? (room_height/2): (room_height/2 + lengthdir_y(150, (360/array_length(people))*normalPeopleCreated )));
 		
@@ -92,45 +117,45 @@ if(draw_things){
 				associatedNodes: people[i].associatedNodes
 			}
 		);
-		if (person.isMainPerson){
-			global.mainPerson = person;
-		}
-		
+
 				
 		// Store created nodes into array
 		array_push(global.createdPeople, person);
 	}
 	
 	
-	// NODES
-	/// Create all the nodes in the array of nodes
-	/// Maybe I should first assign the nodes to people?
-	for(var i=0; i<array_length(nodes); i++)
-	{
+	// NODES ASSIGNMENT
+	/// Assign each node to the appropriate people.
+	//for(var i=0; i<array_length(nodes); i++)
+	//{
 		
-
-		var position = check_orbit(nodes[i].groups, nodes[i]);
+define_orbits(nodes);
 		
-		//var px = position[0];
-		//var py = position[1];
-		//// Create each node in a random location
-		//var node = instance_create_layer(
-		//	px + lengthdir_x(164, 0), 
-		//	py + lengthdir_y(164, 0), 
-		//	"Instances", 
-		//	obj_node, 
-		//	{	tokens: nodes[i].groups, 
-		//		name: nodes[i].name, 
-		//		sprite_index: nodes[i].sprite 
-		//	}
-		//);
+for(var j=0; j<array_length(global.createdPeople); j++){
+			
+	var currentPerson = global.createdPeople[j];
+	for(var i=0; i<array_length(currentPerson.associatedNodes); i++){
+			
+		var nodes = currentPerson.associatedNodes;
+			
+		var px = currentPerson.x;
+		var py = currentPerson.y;
+		// Create each node in a random location
+		var node = instance_create_layer(
+			px + lengthdir_x(164, 360/array_length(currentPerson.associatedNodes)*i), 
+			py + lengthdir_y(164, 360/array_length(currentPerson.associatedNodes)*i), 
+			"Instances", 
+			obj_node, 
+			{	tokens: nodes[i].groups, 
+				name: nodes[i].name, 
+				sprite_index: nodes[i].sprite 
+			}
+		);
 		
-		////trying orbit functionout
-		//show_debug_message(check_orbit(node.tokens));
-		
-		// Store created nodes into array
-		//array_push(global.createdNodes, node);
+		//Store created nodes into array
+		array_push(global.createdNodes, node);
 	}
+}
 
 	
 	// Create nodes non-programmatically
@@ -146,7 +171,7 @@ if(draw_test_things){
 	
 	var _xx = central.x + lengthdir_x(164, 0);
 	var _yy = central.y + lengthdir_y(164, 0);
-	instance_create_layer(_xx, _yy, "Instances", obj_area2);
+	instance_create_layer(_xx, _yy, "Instances", obj_draggable);
 	
 	var _xx2 = central.x + lengthdir_x(164, 90);
 	var _yy2 = central.y + lengthdir_y(164, 90);

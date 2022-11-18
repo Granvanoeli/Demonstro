@@ -2,7 +2,10 @@
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
   "name": "obj_draggable",
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_draggable",
+    "path": "sprites/spr_draggable/spr_draggable.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,

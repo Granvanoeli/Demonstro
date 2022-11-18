@@ -9,6 +9,9 @@ if(keyboard_check_pressed(ord("T"))){
 	show_debug_message(global.createdNodes);
 	show_debug_message(global.createdPeople[0].name );
 	show_debug_message(global.createdPeople[0].associatedNodes );
+	//show_debug_message(global.createdPeople[1].name );
+	//show_debug_message(global.createdPeople[1].associatedNodes );
+	
 }
 
 //add to Joan

@@ -19,33 +19,38 @@ function searchArray (array, val_to_search){
 	}
 }
 
-function check_orbit(tokensArray, node){
+function define_orbits(nodes){
 	
-	// For each token the node has of this node
-	for(var i=0; i<array_length(tokensArray); i++){
-		//Check each of the people
-		var token = tokensArray[i];
-		for(var j=0; j<array_length(global.createdPeople); j++){
+	for(var m=0; m<array_length(nodes); m++){
+		
+		var tokensArray = nodes[m].groups;
+		// For each token the node has 
+		for(var i=0; i<array_length(tokensArray); i++){
+			//Check each of the people
+			var token = tokensArray[i];
+			for(var j=0; j<array_length(global.createdPeople); j++){
 			
-			var person = global.createdPeople[j];
-			// Check each of the people's tokens
-			for(var k=0; k<array_length(person.tokens); k++){
+				var person = global.createdPeople[j];
+				// Check each of the people's tokens
+				for(var k=0; k<array_length(person.tokens); k++){
 				
-				// If they correspond
-				if (person.tokens[k] == token){
-					array_push(person.associatedNodes, node);
-					var personLocation = [person.x,person.y];
+					// If they correspond
+					if (person.tokens[k] == token){
+						array_push(person.associatedNodes, nodes[m]);
+						//var personLocation = [person.x,person.y];
 					
-					return personLocation;
+						//return personLocation;
+					}
 				}
-			}
 			
+			}
 		}
-	}
+}
 	
 }
 
-function place_in_main_person_orbit(){
+function place_in_orbit(node){
+	
 
 }
 
